@@ -1,4 +1,4 @@
-from grid4 import grid, SIZE, INPUT
+from grid8 import grid, SIZE, INPUT
 
 r = 0
 c = 0
