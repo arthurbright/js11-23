@@ -10,6 +10,7 @@ def isValidMove(r1, c1, r2, c2):
     return False
 
 ind = 0
+totalTime = 0
 for time, move in INPUT:
     # find all and wait
     cur = grid[r][c]
@@ -39,9 +40,11 @@ for time, move in INPUT:
         print(f"ILLEGAL MOVE: ({time}, {move})  (move {ind})")
         break
     ind += 1
+    totalTime += time
 
 # print result
 print(f"Final coords: ({r}, {c})")
+print(f"Total time: {totalTime}")
 print("=================================================")
 
 SPACING = 7
