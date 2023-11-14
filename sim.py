@@ -79,7 +79,7 @@ while True:
         for j in range(SIZE):
             if (i, j) == (r, c):
                 string += RED + (f"{'%g'%(round(grid[i][j], SPACING - 5))}").ljust(SPACING) + ENDC
-            elif grid[r][c] == grid[i][j]:
+            elif grid[r][c] == grid[i][j] and (r, c) != (SIZE - 1 - i, SIZE - 1 - j):
                 string += YELLOW + (f"{'%g'%(round(grid[i][j], SPACING - 5))}").ljust(SPACING) + ENDC
             else:
                 string += (f"{'%g'%(round(grid[i][j], SPACING - 5))}").ljust(SPACING) 
