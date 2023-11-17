@@ -1,8 +1,11 @@
-from grid8 import grid, SIZE, INPUT
+from grid4 import grid, SIZE, INPUT
 RED = '\033[91m'
 YELLOW = '\033[92m'
 ENDC = '\033[0m'
 
+#clear file
+with open("dyno.txt", "w") as f:
+    pass
 
 r = 0
 c = 0
@@ -26,7 +29,7 @@ while True:
     sames = []
     for i in range(SIZE):
         for j in range(SIZE):
-            if grid[i][j] == cur and (i != SIZE - 1 - r and j != SIZE - 1 - c):
+            if grid[i][j] == cur and (i != SIZE - 1 - r or j != SIZE - 1 - c):
                 sames.append((i, j))
     
     n = len(sames)
@@ -37,11 +40,18 @@ while True:
         time, move = INPUT[ind]
         READINPUT =  True
     else:
-        time, move = input("Next move: ").split()
+        iii = input("Next move: ")
+        time, move = iii.split()
         time = float(time)
         READINPUT = False
-
+        
     diff = float(time)/n
+
+
+    newr, newc = translate(move)
+    if grid[r][c] == grid[newr][newc] and time > 0:
+        with open("hi.txt", "w") as ff:
+            ff.write("unecessary sink")
 
     if grid[SIZE - 1 - r][SIZE - 1 - c] != cur:
         grid[SIZE - 1 - r][SIZE - 1 - c] += diff
@@ -49,16 +59,17 @@ while True:
     for i, j in sames:
         grid[i][j] -= diff
 
-    # move
-    newr, newc = translate(move)
+
 
     if isValidMove(r, c, newr, newc):
         r = newr
         c = newc
         totalTime += time
         ind += 1
+        with open("dyno.txt", "a") as f:
+            f.write(f"({'%g'%time}, {move}), ")
     else:
-        print(f"ILLEGAL MOVE: ({time}, {move})  (move {ind})")
+        print(RED + f"ILLEGAL MOVE: ({time}, {move})  (move {ind})" + ENDC)
         if grid[SIZE - 1 - r][SIZE - 1 - c] != cur:
             grid[SIZE - 1 - r][SIZE - 1 - c] -= diff
 
