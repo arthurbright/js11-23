@@ -1,4 +1,4 @@
-from grid4 import grid, SIZE, INPUT
+from grid8 import grid, SIZE, INPUT
 RED = '\033[91m'
 YELLOW = '\033[92m'
 ENDC = '\033[0m'
@@ -51,7 +51,7 @@ while True:
     newr, newc = translate(move)
     if grid[r][c] == grid[newr][newc] and time > 0:
         with open("hi.txt", "w") as ff:
-            ff.write("unecessary sink")
+            ff.write(f"unecessary sink: {move}")
 
     if grid[SIZE - 1 - r][SIZE - 1 - c] != cur:
         grid[SIZE - 1 - r][SIZE - 1 - c] += diff
