@@ -1,6 +1,7 @@
 from grid8 import grid, SIZE, INPUT
 RED = '\033[91m'
-YELLOW = '\033[92m'
+YELLOW = '\033[93m'
+GREEN = '\033[92m'
 ENDC = '\033[0m'
 
 #clear file
@@ -90,8 +91,10 @@ while True:
         for j in range(SIZE):
             if (i, j) == (r, c):
                 string += RED + (f"{'%g'%(round(grid[i][j], SPACING - 5))}").ljust(SPACING) + ENDC
-            elif grid[r][c] == grid[i][j] and (r, c) != (SIZE - 1 - i, SIZE - 1 - j):
+            elif (r, c) == (SIZE - 1 - i, SIZE - 1 - j):
                 string += YELLOW + (f"{'%g'%(round(grid[i][j], SPACING - 5))}").ljust(SPACING) + ENDC
+            elif grid[r][c] == grid[i][j] and (r, c) != (SIZE - 1 - i, SIZE - 1 - j):
+                string += GREEN + (f"{'%g'%(round(grid[i][j], SPACING - 5))}").ljust(SPACING) + ENDC
             else:
                 string += (f"{'%g'%(round(grid[i][j], SPACING - 5))}").ljust(SPACING) 
         print(string)
